@@ -14,12 +14,6 @@ This library implements version 2 of create payment request and create refund.
 
 `go get github.com/Kansuler/payment-swish`
 
-## Functions
-
-```go
-
-```
-
 ## Usage
 
 ```go
