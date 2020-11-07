@@ -1,8 +1,8 @@
-# Kansuler/bankid
+# Kansuler/payment-swish
 
 ![License](https://img.shields.io/github/license/Kansuler/payment-swish) ![Version](https://img.shields.io/github/go-mod/go-version/Kansuler/payment-swish) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8be4b74cbfa74fb1bcc6b38bdba52aed)](https://www.codacy.com/gh/Kansuler/payment-swish/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Kansuler/payment-swish&amp;utm_campaign=Badge_Grade)
 
-A package to simplify integrations against the authentication and signing service [Swish](https://www.swish.nu/).
+A package to simplify integrations against the Swedish payment solution [Swish](https://www.swish.nu/).
 
 It is recommended to read through the [integration guide](https://www.swish.nu/developer#swish-for-merchants) thoroughly to understand the the process, and what responses that can occur.
 
