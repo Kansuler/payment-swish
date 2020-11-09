@@ -159,8 +159,8 @@ type createPaymentRequestResponse struct {
 	// PaymentRequestToken is returned when creating an m-commerce payment request. The token to use when opening the
 	// Swish app.
 	PaymentRequestToken string
-	// ErrorCode returns error codes
-	ErrorCodes []string
+	// ErrorCodes returns error codes
+	ErrorCodes []errorResponse
 }
 
 // CreatePaymentRequest sends a v2 payment request to Swish to create a payment
@@ -185,26 +185,28 @@ func (s *Swish) CreatePaymentRequest(ctx context.Context, opts CreatePaymentRequ
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusUnprocessableEntity {
-		var errCodes []errorResponse
-		err = json.NewDecoder(resp.Body).Decode(&errCodes)
+		err = json.NewDecoder(resp.Body).Decode(&result.ErrorCodes)
 		if err != nil {
 			return
 		}
 
 		var errs string
-		for _, errCode := range errCodes {
+		for _, errCode := range result.ErrorCodes {
 			if len(errs) > 0 {
 				errs += " | "
 			}
 			errs += fmt.Sprintf("[%s] %s", errCode.ErrorCode, errCode.ErrorMessage)
-			result.ErrorCodes = append(result.ErrorCodes, errCode.ErrorCode)
 		}
 
 		return result, errors.New(errs)
 	}
 
 	if resp.StatusCode == http.StatusForbidden {
-		result.ErrorCodes = append(result.ErrorCodes, "PA01")
+		result.ErrorCodes = append(result.ErrorCodes, errorResponse{
+			ErrorCode:             "PA01",
+			ErrorMessage:          "The payeeAlias in the payment request object is not the same as merchant’s Swish number",
+			AdditionalInformation: "",
+		})
 		return result, errors.New("[PA01] The payeeAlias in the payment request object is not the same as merchant’s Swish number")
 	}
 
