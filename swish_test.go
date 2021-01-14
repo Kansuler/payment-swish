@@ -17,7 +17,7 @@ func TestNew(t *testing.T) {
 
 	s, err := swish.New(swish.Options{
 		Passphrase:     "swish",
-		CA:             swish.TestCertificate,
+		CA:             swish.Certificate,
 		SSLCertificate: cert,
 		Test:           true,
 		Timeout:        5,
@@ -28,7 +28,7 @@ func TestNew(t *testing.T) {
 
 	s, err = swish.New(swish.Options{
 		Passphrase:     "hsiws",
-		CA:             swish.TestCertificate,
+		CA:             swish.Certificate,
 		SSLCertificate: cert,
 		Test:           true,
 		Timeout:        5,
@@ -46,7 +46,7 @@ func TestSwish_CreatePaymentRequest(t *testing.T) {
 
 	s, err := swish.New(swish.Options{
 		Passphrase:     "swish",
-		CA:             swish.TestCertificate,
+		CA:             swish.Certificate,
 		SSLCertificate: cert,
 		Test:           true,
 		Timeout:        5,
@@ -97,7 +97,7 @@ func TestSwish_Status(t *testing.T) {
 
 	s, err := swish.New(swish.Options{
 		Passphrase:     "swish",
-		CA:             swish.TestCertificate,
+		CA:             swish.Certificate,
 		SSLCertificate: cert,
 		Test:           true,
 		Timeout:        5,
@@ -140,7 +140,7 @@ func TestSwish_CreateRefund(t *testing.T) {
 
 	s, err := swish.New(swish.Options{
 		Passphrase:     "swish",
-		CA:             swish.TestCertificate,
+		CA:             swish.Certificate,
 		SSLCertificate: cert,
 		Test:           true,
 		Timeout:        5,
